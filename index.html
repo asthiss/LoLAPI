@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  </head>
+  <body>
+    <input type='text' id='nameInput' placeholder='SummonerName'>
+    <div id='messagesDiv'></div>
+    <script>
+      //var myDataRef = new Firebase('https://amber-fire-2204.firebaseio.com/#-KEWd9WcKpcbn7EDgVIk|a9efb9a53da8cd5b0919fe0ce65c3e37');
+      $('#nameInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          $.getJSON('https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/' +  name + '?api_key=b2f8a7fd-8688-47f5-9b16-1c4828661299', 
+          function( data ) {
+            displayChatMessage(data);
+          });
+        }
+      });
+      function displayChatMessage(data) {
+        $('<div/>').text(JSON.stringify(data)).appendTo($('#messagesDiv'));
+      };
+    </script>
+  </body>
+</html>
