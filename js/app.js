@@ -56,5 +56,3 @@ function ViewModel() {
 
 var VM = new ViewModel();
 ko.applyBindings(VM);
-
-lolService.getChampions();
