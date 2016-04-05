@@ -7,15 +7,33 @@
   <body>
 
 
-  <p data-bind="text: apikey"></p>
 
-  <!--<div data-bind="template: { name: 'person-template', data: buyer }"></div>
+  <div data-bind="template: { name: 'search-summoner' }"></div>
+
+  <ul data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
 
 
 
-  <script type="text/html" id="main-page">
-    <h1 data-bind="text: page-title"></h1>
-  </script>-->
+
+
+
+
+
+
+  <script type="text/html" id="search-summoner">
+    <h3 data-bind="text: name"></h3>
+    <input type="text" data-bind="value: summonerSearchQuery, event: { 'keyup': searchSummoner }">
+  </script>
+
+  <script type="text/html" id="search-history">
+    <li>
+      <h3 data-bind="text: name"></h3>
+      <p data-bind="text: 'id: ' + id"></p>
+      <p data-bind="text: 'profileIconId: ' + profileIconId"></p>
+      <p data-bind="text: 'summonerLevel: ' + summonerLevel"></p>
+      <p data-bind="text: 'revisionDate: ' + revisionDate"></p>
+    </li>
+  </script>
 
   <script src="js/app.js"></script>
   </body>
