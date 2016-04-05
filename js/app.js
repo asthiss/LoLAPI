@@ -1,8 +1,18 @@
-var REF = new Firebase("https://amber-fire-2204.firebaseio.com/");
+var BASEREF = new Firebase("https://amber-fire-2204.firebaseio.com/");
 
 function ViewModel() {
-    this.buyer = { name: 'Franklin', credits: 250 };
-    this.seller = { name: 'Mario', credits: 5800 };
+    var self = this;
+    self.apikey = ko.observable();
+    self.user = ko.observable();
+
+
+    (function init() {
+
+        BASEREF.child("settings").child("apikey").once("value", function(data){
+            self.apikey(data.val());
+        });
+
+    })();
 }
 
 var VM = new ViewModel();
