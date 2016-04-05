@@ -18,7 +18,7 @@ function checkCache(method, name, callback) {
 
         if (!summonerExists) {
             console.log("Didn't find him, Gonna use the api!");
-            getFromLolApi(name, callback);
+            lolService.getSummoner(name, callback);
         } else {
             console.log("Found him in the firebase, lets get him!");
             getFromFireBase(method, name, callback)
