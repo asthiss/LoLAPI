@@ -52,6 +52,15 @@ var lolService = {
         });
     }, 
 
+    // Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
+    // data: Map[string, SummonerDto]
+    getSummoner: function(summonerName)
+    {
+        this.doRequest("/api/lol/euw/v1.4/summoner/by-name/" + summonerName + "?api_key=" + this.APIKEY, function(data)
+        {
+            
+        });
+    }, 
 
     doRequest: function(url, callback) {
         $.getJSON(url, function(data){
