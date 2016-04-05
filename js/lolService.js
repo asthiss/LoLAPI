@@ -11,6 +11,6 @@ var lolService = {
         });
     },
     doRequest: function(url, callback) {
-        $.getJSON(url, callback(data));
+        $.getJSON(url, callback());
     }
 }
