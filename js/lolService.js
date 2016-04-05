@@ -63,7 +63,7 @@ var lolService = {
     }, 
 
     doRequest: function(url, callback) {
-        $.getJSON(url, function(data){
+        $.getJSON(BASEURL + url, function(data){
             callback(data)
         });
     }
