@@ -58,7 +58,10 @@ var lolService = {
     {
         this.doRequest("/api/lol/euw/v1.4/summoner/by-name/" + summonerName + "?api_key=" + this.APIKEY, function(data)
         {
+            summonerName = summonerName.replace(" ", "");
+
             BASEREF.child("summoners/" + summonerName).set(data);
+
             lolService.getSummonerRunes(data[summonerName].id, summonerName);
         });
     },

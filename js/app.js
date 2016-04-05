@@ -1,17 +1,19 @@
 var BASEREF = new Firebase("https://amber-fire-2204.firebaseio.com/");
 
 function checkCache(method, name, callback) {
-    var ref = BASEREF.child(method).child(name)
+
+    var trimmedName = name.replace(" ", "");
+    var ref = BASEREF.child(method).child(trimmedName);
 
     ref.on("value", function(snapshot) {
-        var summonerExists = snapshot.child(name).exists();
+        var summonerExists = snapshot.child(trimmedName).exists();
 
         if (!summonerExists) {
             console.log("Didn't find him, Gonna use the api!");
             lolService.getSummoner(name);
         } else {
             console.log("Found him in the firebase, lets get him!");
-            getFromFireBase(method, name, callback);
+            getFromFireBase(method, trimmedName, callback);
             ref.off();
         }
     });
