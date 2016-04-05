@@ -54,16 +54,16 @@ var lolService = {
 
     // Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
     // data: Map[string, SummonerDto]
-    getSummoner: function(summonerName)
+    getSummoner: function(summonerName, callback)
     {
         this.doRequest("/api/lol/euw/v1.4/summoner/by-name/" + summonerName + "?api_key=" + this.APIKEY, function(data)
         {
-            
+            callback(data[summonerName]);
         });
     }, 
 
     doRequest: function(url, callback) {
-        $.getJSON(BASEURL + url, function(data){
+        $.getJSON(this.BASEURL + url, function(data){
             callback(data)
         });
     }
