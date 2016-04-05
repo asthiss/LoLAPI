@@ -13,7 +13,11 @@ function lolApiUrl(name, callback) {
 }
 
 function ViewModel() {
-
+    var self = this;
+    self.apikey = ko.observable();
+    //self.user = ko.observable();
+    self.searchHistory = ko.observableArray([]);
+    self.summonerSearchQuery = ko.observable();
 
 
     (function init() {

@@ -6,8 +6,6 @@
     <script src="js/lolService.js"></script>
   </head>
   <body>
-    <p>test</p>
-
 
   <div data-bind="template: { name: 'search-summoner' }"></div>
 
@@ -16,7 +14,7 @@
 
 
 
-
+  <!-- templates come from the line under -->
   <script type="text/html" id="search-summoner">
     <h3 data-bind="text: name"></h3>
     <input type="text" data-bind="value: summonerSearchQuery, event: { 'keyup': searchSummoner }">
@@ -32,5 +30,6 @@
     </li>
   </script>
 
+  <script src="js/app.js"></script>
   </body>
 </html>
