@@ -15,8 +15,8 @@ function ViewModel() {
     })();
 
     self.searchSummoner = function (d, e) {
-        if (e.keyCode == 13) {
-            //e.target.blur();
+        if (e.keyCode == 13 || e.type=="click") {
+            e.target.blur();
             firebaseService.getSummoner(self.summonerSearchQuery(), self.searchSummonerCallback);
         }
     };
