@@ -71,13 +71,30 @@ var lolService = {
     },
     // Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
     // data: Map[string, SummonerDto]
-    getSummoner: function(summonerName, callback)
+    getSummoner: function(summonerName)
     {
         this.doRequest("/api/lol/euw/v1.4/summoner/by-name/" + summonerName + "?api_key=" + this.APIKEY, function(data)
         {
-            callback(data[summonerName]);
+            summonerName = summonerName.replace(" ", "");
+
+            BASEREF.child("summoners/" + summonerName).set(data);
+
+            lolService.getSummonerRunes(data[summonerName].id, summonerName);
         });
-    }, 
+    },
+
+    // This object contains rune pages information.
+    // Map[string, RunePagesDto]
+    getSummonerRunes: function(id, summonerName)
+    {
+        this.doRequest("/api/lol/euw/v1.4/summoner/" + id + "/runes?api_key=" + this.APIKEY, function(data)
+        {
+            //console.log(data);
+
+            BASEREF.child("runes/" + summonerName).set(data[id]);
+        });
+    },
+
 
     doRequest: function(url, callback) {
         $.getJSON(this.BASEURL + url, function(data){
