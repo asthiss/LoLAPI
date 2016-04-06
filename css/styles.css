@@ -13,3 +13,8 @@ body {
 .footer {
   min-height: 10vh;
 }
+
+.simple-list {
+    list-style: none inside;
+}
+

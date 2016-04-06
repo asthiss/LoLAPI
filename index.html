@@ -34,15 +34,13 @@
 </div>
 
 <div class="row main">
-  <div class="col-md-3">
-    <ul data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
-  </div>
-
-<div class="col-md-9">
-  <div data-bind="template: { name: 'search-summoner' }"></div>
-  <div data-bind="template: { name: 'selected-summoner', data: selectedSummoner }" class="col-md-12"></div>
-</div>
-
+    <div class="col-md-12">
+        <div data-bind="template: { name: 'search-summoner' }"></div>
+        <div data-bind="template: { name: 'selected-summoner', data: selectedSummoner }" class="col-md-12"></div>
+    </div>
+    <div class="col-md-5">
+        <ul class="media-list" data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
+    </div>
 </div>
 
 <div class="row footer">
@@ -69,20 +67,29 @@
       </div>
 
       <button type="submit" class="btn btn-default">
-      Submit
+      &lt;-- Press enter
       </button>
     </form>
   </script>
 
   <script type="text/html" id="search-history">
-    <li>
-      <a href data-bind="click: $root.selectSummoner">
-        <h3 data-bind="text: name + ' >'"></h3>
-      </a>
-      <p data-bind="text: 'id: ' + id"></p>
-      <p data-bind="text: 'profileIconId: ' + profileIconId"></p>
-      <p data-bind="text: 'summonerLevel: ' + summonerLevel"></p>
-      <p data-bind="text: 'revisionDate: ' + revisionDate"></p>
+    <li class="media">
+        <div class="media-left">
+            <a href="#" data-bind="click: $root.selectSummoner">
+                <img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">
+            </a>
+        </div>
+        <div class="media-body">
+            <a href  data-bind="click: $root.selectSummoner">
+                <h4 class="media-heading" data-bind="text: name + ' '" ></h4>
+            </a>
+            <ul class="simple-list">                
+                <li data-bind="text: 'id: ' + id"></li>
+                <li data-bind="text: 'profileIconId: ' + profileIconId"></li>
+                <li data-bind="text: 'summonerLevel: ' + summonerLevel"></li>
+                <li data-bind="text: 'revisionDate: ' + revisionDate"></li>
+            </ul>
+        </div>
     </li>
   </script>
 
