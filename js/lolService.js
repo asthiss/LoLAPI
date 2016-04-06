@@ -1,3 +1,5 @@
+var BASEREF = new Firebase("https://amber-fire-2204.firebaseio.com/");
+
 var lolService = {
     APIKEY: "b2f8a7fd-8688-47f5-9b16-1c4828661299",
     BASEURL: "https://euw.api.pvp.net",
@@ -94,4 +96,4 @@ var lolService = {
             callback(data)
         });
     }
-}
+};
