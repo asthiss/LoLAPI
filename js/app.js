@@ -2,7 +2,7 @@ var BASEREF = new Firebase("https://amber-fire-2204.firebaseio.com/");
 
 function checkCache(method, name, callback) {
 
-    var trimmedName = name.replace(" ", "");
+    var trimmedName = name.toLowerCase().replace(" ", "");
     var ref = BASEREF.child(method).child(trimmedName);
 
     ref.on("value", function(snapshot) {
