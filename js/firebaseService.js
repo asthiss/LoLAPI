@@ -47,7 +47,7 @@ var firebaseService = {
             } else {
                 console.log("Found him in the firebase, lets get him!");
                 firebaseService.fetch(baseRef, name, callback);
-                ref.off();
+                baseRef.off();
             }
         });
 
