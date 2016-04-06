@@ -65,6 +65,16 @@ var lolService = {
             lolService.getSummonerRunes(data[summonerName].id, summonerName);
         });
     },
+    
+    // Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
+    // data: Map[string, SummonerDto]
+    getCurrentGame: function(id)
+    {
+        this.doRequest("/observer-mode/rest/consumer/getSpectatorGameInfo/euw1/" + id + "?api_key=" + this.APIKEY, function(data)
+        {
+            console.log(data);            
+        });
+    },
 
     // This object contains rune pages information.
     // Map[string, RunePagesDto]

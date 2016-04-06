@@ -36,11 +36,12 @@
 <div class="row main">
     <div class="col-md-12">
         <div data-bind="template: { name: 'search-summoner' }"></div>
-        <div data-bind="template: { name: 'selected-summoner', data: selectedSummoner }" class="col-md-12"></div>
+        
     </div>
     <div class="col-md-5">
         <ul class="media-list" data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
     </div>
+    <div data-bind="template: { name: 'selected-summoner', data: selectedSummoner }" class="col-md-7 main-content hidden"></div>
 </div>
 
 <div class="row footer">
@@ -94,9 +95,15 @@
   </script>
 
   <script type="text/html" id="selected-summoner">
-    <p data-bind="text: name">
-
-    </p>
+    <h2 class="summonerheading" data-bind="text: name"></h2>  
+    Maybe this should not only be to the right.. maybe instead replace the entire area?<br/>
+    Should we have some list like the one below with actions? or maybe tabs? or smth else?
+    <ul class="simple-list">        
+        <li><a href="javascript:alert('Not implemented!')">Check player runes</a></li>
+        <li><a href="javascript:alert('Not implemented!')">Check masteries</a></li>
+        <li><a href="javascript:alert('Not implemented!')">Current game</a></li>
+        <li><a href="javascript:alert('Not implemented!')">smth wards/pings etc..</a></li>
+    </ul>      
   </script>
 
   <script src="js/app.js"></script>

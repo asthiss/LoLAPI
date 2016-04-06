@@ -53,7 +53,10 @@ function ViewModel() {
     };
 
     self.selectSummoner = function(summoner) {
+      //lolService.getSummoner(name);
       self.selectedSummoner(summoner);
+      console.log($('.main-content').length);
+      $('.main-content').removeClass('hidden');
     };
 }
 
