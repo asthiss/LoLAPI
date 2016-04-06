@@ -1,0 +1,15 @@
+body {
+  background-color: #ededed;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.main {
+  min-height: 80vh;
+}
+
+.footer {
+  min-height: 10vh;
+}

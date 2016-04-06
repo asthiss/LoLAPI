@@ -32,6 +32,7 @@ function ViewModel() {
     //self.user = ko.observable();
     self.searchHistory = ko.observableArray([]);
     self.summonerSearchQuery = ko.observable();
+    self.selectedSummoner = ko.observable();
 
 
     (function init() {
@@ -51,8 +52,8 @@ function ViewModel() {
         self.searchHistory.push(data);
     };
 
-    self.getRunesForName = function(name) {
-      return ["test", "test2"];
+    self.selectSummoner = function(summoner) {
+      self.selectedSummoner(summoner);
     };
 }
 
