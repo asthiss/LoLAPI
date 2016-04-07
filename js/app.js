@@ -17,12 +17,14 @@ function ViewModel() {
     self.searchSummoner = function (d, e) {
         if (e.keyCode == 13 || e.type=="click") {
             e.target.blur();
-            firebaseService.getSummoner(self.summonerSearchQuery(), self.searchSummonerCallback);
+            var summonerName = self.summonerSearchQuery().replace(" ", "").toLowerCase();
+            firebaseService.getSummoner(summonerName, self.searchSummonerCallback);
         }
     };
 
     self.searchSummonerCallback = function(data) {
-        self.searchHistory.push(data[self.summonerSearchQuery()]);
+        var summonerName = self.summonerSearchQuery().replace(" ", "").toLowerCase();
+        self.searchHistory.push(data[summonerName]);
     };
 
     self.selectSummoner = function(summoner) {
