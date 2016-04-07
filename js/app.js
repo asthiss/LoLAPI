@@ -15,8 +15,8 @@ function ViewModel() {
     })();
 
     self.searchSummoner = function (d, e) {
-        if (e.keyCode == 13 || e.type=="click") {
-            e.target.blur();
+        if (e.type=="click") {
+            e.target.blur();            
             var summonerName = self.summonerSearchQuery().replace(" ", "").toLowerCase();
             firebaseService.getSummoner(summonerName, self.searchSummonerCallback);
         }
@@ -30,7 +30,6 @@ function ViewModel() {
     self.selectSummoner = function(summoner) {
       //lolService.getSummoner(name);
       self.selectedSummoner(summoner);
-      console.log($('.main-content').length);
       $('.main-content').removeClass('hidden');
     };
 
