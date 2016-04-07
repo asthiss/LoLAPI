@@ -2,36 +2,137 @@
   <head>
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-    <script src="js/lolService.js"></script>
+
+
+    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
+      <script src="js/lolService.js"></script>
+      <script src="js/firebaseService.js"></script>
   </head>
   <body>
 
-  <!-- Site -->
-  <div data-bind="template: { name: 'search-summoner' }"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
 
-  <ul data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
+        </div>
+  <div class="col-md-4">
+    <div class="page-header">
+      <h1>
+        LoLAPI! <small>Tools for NCG </small>
+      </h1>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>
+
+<div class="row main">
+    <div class="col-md-12">
+        <div data-bind="template: { name: 'search-summoner' }"></div>
+        
+    </div>
+    <div class="col-md-5">
+        <ul class="media-list" data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
+    </div>
+
+    <div class="col-md-7">
+        <div class="main-content hidden" data-bind="template: { name: 'selected-summoner', data: selectedSummoner }"></div>
+        <div class="row runes" data-bind="template: { name: 'selected-runes', selectedRunes }"></div>
+    </div>
+</div>
+
+<div class="row footer">
+  <div class="col-md-12">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+</div>
+</div>
+
+
+
+
 
   <!-- templates come from the line under -->
   <script type="text/html" id="search-summoner">
-    <h3 data-bind="text: name"></h3>
-    <input type="text" data-bind="value: summonerSearchQuery, event: { 'keyup': searchSummoner }">
+    <form action="javascript:void(0);" role="form" class="form-inline">
+      <div class="form-group">
+
+      <label for="exampleInputEmail1">
+      Search Summoner
+      </label>
+      <input type="text" class="form-control" id="exampleInputEmail1" data-bind="value: summonerSearchQuery, event: { 'keyup': searchSummoner }">
+      </div>
+
+      <button type="submit" class="btn btn-default" data-bind="click: searchSummoner">
+      Search
+      </button>
+    </form>
   </script>
 
   <script type="text/html" id="search-history">
-    <li>
-      <h3 data-bind="text: name"></h3>
-      <p data-bind="text: 'id: ' + id"></p>
-      <p data-bind="text: 'profileIconId: ' + profileIconId"></p>
-      <p data-bind="text: 'summonerLevel: ' + summonerLevel"></p>
-      <p data-bind="text: 'revisionDate: ' + revisionDate"></p>
-
-<!--TODO: show some of the runes, would be nice :) -->
-<!--    <ul data-bind="foreach: getRunesForName(name)">
-            <li>test</li>
-        </ul>-->
+    <li class="media">
+        <div class="media-left">
+            <a href="#" data-bind="click: $root.selectSummoner">
+                <img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">
+            </a>
+        </div>
+        <div class="media-body">
+            <a href data-bind="click: $root.selectSummoner">
+                <h4 class="media-heading" data-bind="text: name + ' '" ></h4>
+            </a>
+            <ul class="simple-list">                
+                <li data-bind="text: 'id: ' + id"></li>
+                <li data-bind="text: 'profileIconId: ' + profileIconId"></li>
+                <li data-bind="text: 'summonerLevel: ' + summonerLevel"></li>
+                <li data-bind="text: 'revisionDate: ' + revisionDate"></li>
+            </ul>
+        </div>
     </li>
   </script>
+
+  <script type="text/html" id="selected-summoner">
+    <h2 class="summonerheading" data-bind="text: name"></h2>  
+    Maybe this should not only be to the right.. maybe instead replace the entire area?<br/>
+    Should we have some list like the one below with actions? or maybe tabs? or smth else?
+    <ul class="simple-list">        
+        <li><a href data-bind="click: $root.selectRunes">Check player runes</a></li>
+        <li><a href="javascript:alert('Not implemented!')">Check masteries</a></li>
+        <li><a href="javascript:alert('Not implemented!')">Current game</a></li>
+        <li><a href="javascript:alert('Not implemented!')">smth wards/pings etc..</a></li>
+    </ul>
+  </script>
+
+
+    <!-- RUNES -->
+    <script type="text/html" id="selected-runes">
+        <div class="col-md-12 runes" data-bind="foreach: selectedRunes">
+            <!-- ko if: $index() %3 == 0 -->
+            <div class="clearfix"></div>
+            <!-- /ko -->
+            <div class="col-md-4">
+
+                <div class="panel" data-bind="css: {'panel-primary': current, 'panel-default': !current}">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" data-bind="text: name"></div>
+
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item" data-bind="text: id"></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </script>
 
   <script src="js/app.js"></script>
   </body>

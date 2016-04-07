@@ -1,30 +1,4 @@
-var BASEREF = new Firebase("https://amber-fire-2204.firebaseio.com/");
 
-function checkCache(method, name, callback) {
-
-    var trimmedName = name.replace(" ", "");
-    var ref = BASEREF.child(method).child(trimmedName);
-
-    ref.on("value", function(snapshot) {
-        var summonerExists = snapshot.child(trimmedName).exists();
-
-        if (!summonerExists) {
-            console.log("Didn't find him, Gonna use the api!");
-            lolService.getSummoner(name);
-        } else {
-            console.log("Found him in the firebase, lets get him!");
-            getFromFireBase(method, trimmedName, callback);
-            ref.off();
-        }
-    });
-}
-
-function getFromFireBase(method, name, callback) {
-    BASEREF.child(method).child(name).on("value", function(snapshot) {
-            var summoner = snapshot.child(name).val();
-        callback(summoner);
-    });
-}
 
 function ViewModel() {
     var self = this;
@@ -32,6 +6,8 @@ function ViewModel() {
     //self.user = ko.observable();
     self.searchHistory = ko.observableArray([]);
     self.summonerSearchQuery = ko.observable();
+    self.selectedSummoner = ko.observable();
+    self.selectedRunes = ko.observableArray([]);
 
 
     (function init() {
@@ -39,21 +15,35 @@ function ViewModel() {
     })();
 
     self.searchSummoner = function (d, e) {
-        if (e.keyCode == 13) {
-            //e.target.blur();
-
-            checkCache("summoners", self.summonerSearchQuery(), self.searchSummonerCallback);
-            //getFromLolApi(self.summonerSearchQuery(), self.searchSummonerCallback);
+        if (e.keyCode == 13 || e.type=="click") {
+            e.target.blur();
+            firebaseService.getSummoner(self.summonerSearchQuery(), self.searchSummonerCallback);
         }
     };
 
     self.searchSummonerCallback = function(data) {
-        self.searchHistory.push(data);
+        self.searchHistory.push(data[self.summonerSearchQuery()]);
     };
 
-    self.getRunesForName = function(name) {
-      return ["test", "test2"];
+    self.selectSummoner = function(summoner) {
+      //lolService.getSummoner(name);
+      self.selectedSummoner(summoner);
+      console.log($('.main-content').length);
+      $('.main-content').removeClass('hidden');
     };
+
+    self.selectRunes = function (summoner) {
+        // "runes".child("salmin")
+        // "pages" array with objects
+        firebaseService.getSummonerRunes(summoner.name.toLowerCase(), self.selectRunesCallback);
+
+
+    };
+
+    self.selectRunesCallback = function (data) {
+        self.selectedRunes(data.pages);
+    };
+
 }
 
 var VM = new ViewModel();

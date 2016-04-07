@@ -1,0 +1,33 @@
+body {
+  background-color: #ededed;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.main {
+  min-height: 80vh;
+}
+
+.main-content {
+  padding-left:10px;
+  border-left: 1px solid #999;
+}
+
+.footer {
+  min-height: 10vh;
+}
+
+.simple-list {
+  list-style: none inside;
+  padding-left:5px;
+}
+
+.summonerheading {
+  margin:0;
+}
+
+.runes {
+  margin-top: 15px;
+}

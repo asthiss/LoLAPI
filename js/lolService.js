@@ -1,3 +1,5 @@
+var BASEREF = new Firebase("https://amber-fire-2204.firebaseio.com/");
+
 var lolService = {
     APIKEY: "b2f8a7fd-8688-47f5-9b16-1c4828661299",
     BASEURL: "https://euw.api.pvp.net",
@@ -82,6 +84,16 @@ var lolService = {
             lolService.getSummonerRunes(data[summonerName].id, summonerName);
         });
     },
+    
+    // Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
+    // data: Map[string, SummonerDto]
+    getCurrentGame: function(id)
+    {
+        this.doRequest("/observer-mode/rest/consumer/getSpectatorGameInfo/euw1/" + id + "?api_key=" + this.APIKEY, function(data)
+        {
+            console.log(data);            
+        });
+    },
 
     // This object contains rune pages information.
     // Map[string, RunePagesDto]
@@ -101,4 +113,4 @@ var lolService = {
             callback(data)
         });
     }
-}
+};
