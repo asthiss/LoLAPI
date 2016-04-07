@@ -35,7 +35,7 @@ function ViewModel() {
     self.selectRunes = function (summoner) {
         // "runes".child("salmin")
         // "pages" array with objects
-        firebaseService.getSummonerRunes(summoner.name.toLowerCase(), self.selectRunesCallback);
+        firebaseService.getSummonerRunes(summoner.name.replace(" ", "").toLowerCase(), self.selectRunesCallback);
 
 
     };
