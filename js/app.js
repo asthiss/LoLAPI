@@ -15,6 +15,9 @@ function ViewModel() {
     })();
 
     self.searchSummoner = function (d, e) {
+        if (!self.summonerSearchQuery())
+            return;
+     
         if (e.type=="click") {
             e.target.blur();            
             var summonerName = self.summonerSearchQuery().replace(" ", "").toLowerCase();
