@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
       <script src="js/lolService.js"></script>
       <script src="js/firebaseService.js"></script>
+      <script src="js/baseScripts.js"></script>
   </head>
   <body>
 
@@ -36,15 +37,29 @@
 <div class="row main">
     <div class="col-md-12">
         <div data-bind="template: { name: 'search-summoner' }"></div>
-        
-    </div>
-    <div class="col-md-5">
-        <ul class="media-list" data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
-    </div>
-
-    <div class="col-md-7">
-        <div class="main-content hidden" data-bind="template: { name: 'selected-summoner', data: selectedSummoner }"></div>
-        <div class="row runes" data-bind="template: { name: 'selected-runes', selectedRunes }"></div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home">Baseinfo</a></li>
+            <li><a href="#runes">Runes</a></li>
+            <li><a href="#masteries">Search History</a></li>
+            <li><a href="#currentGame">Current Game</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">            
+                <div class="smth" data-bind="template: { name: 'selected-summoner', selectedSummoner }"></div>
+            </div>
+            <div id="runes" class="tab-pane fade">                              
+                <div class="row runes" data-bind="template: { name: 'selected-runes', selectedRunes }"></div>
+            </div>
+            <div id="masteries" class="tab-pane fade">
+                <h3>Masteries</h3>        
+                Currently search history.. but will be masteries here later        
+                <ul class="media-list" data-bind="template: { name: 'search-history', foreach: searchHistory }"></ul>
+            </div>
+            <div id="currentGame" class="tab-pane fade">
+                <h3>Current Game</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -81,15 +96,15 @@
 
   <script type="text/html" id="search-history">
     <li class="media">
-        <div class="media-left">
-            <a href="#" data-bind="click: $root.selectSummoner">
-                <img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">
-            </a>
+        <div class="media-left">           
+             
+            <img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">  
+                      
         </div>
         <div class="media-body">
-            <a href data-bind="click: $root.selectSummoner">
-                <h4 class="media-heading" data-bind="text: name + ' '" ></h4>
-            </a>
+            
+            <h4 class="media-heading" data-bind="text: name + ' '" ></h4>
+            
             <ul class="simple-list">                
                 <li data-bind="text: 'id: ' + id"></li>
                 <li data-bind="text: 'profileIconId: ' + profileIconId"></li>
@@ -101,20 +116,24 @@
   </script>
 
   <script type="text/html" id="selected-summoner">
-    <h2 class="summonerheading" data-bind="text: name"></h2>  
-    Maybe this should not only be to the right.. maybe instead replace the entire area?<br/>
-    Should we have some list like the one below with actions? or maybe tabs? or smth else?
-    <ul class="simple-list">        
-        <li><a href data-bind="click: $root.selectRunes">Check player runes</a></li>
-        <li><a href="javascript:alert('Not implemented!')">Check masteries</a></li>
-        <li><a href="javascript:alert('Not implemented!')">Current game</a></li>
-        <li><a href="javascript:alert('Not implemented!')">smth wards/pings etc..</a></li>
-    </ul>
+        <!--<div class="media-left">            
+            <img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading" data-bind="text: name + ' '" ></h3>
+            <ul class="simple-list">                
+                <li data-bind="text: 'id: ' + id"></li>
+                <li data-bind="text: 'profileIconId: ' + profileIconId"></li>
+                <li data-bind="text: 'summonerLevel: ' + summonerLevel"></li>
+                <li data-bind="text: 'revisionDate: ' + revisionDate"></li>
+            </ul>
+        </div>-->
   </script>
 
 
     <!-- RUNES -->
     <script type="text/html" id="selected-runes">
+        <h3>Runes</h3>  
         <div class="col-md-12 runes" data-bind="foreach: selectedRunes">
             <!-- ko if: $index() %3 == 0 -->
             <div class="clearfix"></div>
