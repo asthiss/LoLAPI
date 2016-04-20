@@ -45,7 +45,7 @@
         </ul>
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">            
-                <div class="smth" data-bind="template: { name: 'selected-summoner', selectedSummoner }"></div>
+                <div class="summoner" data-bind="template: { name: 'selected-summoner', data: selectedSummoner }"></div>
             </div>
             <div id="runes" class="tab-pane fade">                              
                 <div class="row runes" data-bind="template: { name: 'selected-runes', selectedRunes }"></div>
@@ -116,18 +116,19 @@
   </script>
 
   <script type="text/html" id="selected-summoner">
-        <!--<div class="media-left">            
-            <img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">
-        </div>
-        <div class="media-body">
-            <h3 class="media-heading" data-bind="text: name + ' '" ></h3>
-            <ul class="simple-list">                
-                <li data-bind="text: 'id: ' + id"></li>
-                <li data-bind="text: 'profileIconId: ' + profileIconId"></li>
-                <li data-bind="text: 'summonerLevel: ' + summonerLevel"></li>
-                <li data-bind="text: 'revisionDate: ' + revisionDate"></li>
-            </ul>
-        </div>-->
+            <div class="media-left">            
+                <!--<img class="media-object" data-bind="attr: {src: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/' + profileIconId + '.png'}">-->
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading" data-bind="text: name + ' '" ></h3>
+                <!--<li data-bind="text: 'summonerLevel: ' + summonerLevel"></li>-->
+                <!--<ul class="simple-list">
+                    <li data-bind="text: 'id: ' + id"></li>
+                    <li data-bind="text: 'profileIconId: ' + profileIconId"></li>
+                    <li data-bind="text: 'summonerLevel: ' + summonerLevel"></li>
+                    <li data-bind="text: 'revisionDate: ' + revisionDate"></li>
+                </ul>-->
+            </div>
   </script>
 
 

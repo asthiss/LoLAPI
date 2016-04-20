@@ -26,15 +26,17 @@ function ViewModel() {
     };
 
     self.searchSummonerCallback = function(data) {
-        var summonerName = self.summonerSearchQuery().replace(" ", "").toLowerCase();        
+        var summonerName = self.summonerSearchQuery().replace(" ", "").toLowerCase();  
+         
         self.searchHistory.push(data[summonerName]);
         self.selectSummoner(data[summonerName]);
         self.selectRunes(data[summonerName]);
     };
 
     self.selectSummoner = function(summoner) {
-      //lolService.getSummoner(name);
+        
       self.selectedSummoner(summoner);
+      
             
     };
 
